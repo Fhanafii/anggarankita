@@ -18,7 +18,7 @@ export function useUrlState() {
         if (v === null || v === "") p.delete(k);
         else p.set(k, v);
       }
-      router.replace(p.toString() ? `/?${p.toString()}` : "/", { scroll: false });
+      router.replace(p.toString() ? `/explore?${p.toString()}` : "/explore", { scroll: false });
     },
     [router, searchParams],
   );

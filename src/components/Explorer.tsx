@@ -5,6 +5,7 @@
 // components/ApbdMap + lib/map/*.
 
 import { useCallback, useMemo, useRef, useState } from "react";
+import Link from "next/link";
 import ApbdMap from "./ApbdMap";
 import SearchBar, { type SearchResult } from "./SearchBar";
 import RegionPanel from "./RegionPanel";
@@ -109,9 +110,11 @@ export default function Explorer({ initialRegion, initialYear, initialMetric }: 
 
       {/* top overlay: title + search + filters */}
       <div className="pointer-events-none absolute inset-x-0 top-0 z-10 flex flex-col items-center gap-2 px-3 pt-3 md:pt-5">
-        <h1 className="pointer-events-auto rounded-full bg-white/90 px-4 py-1 text-sm font-bold tracking-tight text-slate-900 shadow-sm backdrop-blur">
-          APBD Tracker
-        </h1>
+        <Link href="/" aria-label="Kembali ke beranda Anggarin">
+          <h1 className="pointer-events-auto rounded-full bg-white/90 px-4 py-1 text-sm font-bold tracking-tight text-slate-900 shadow-sm backdrop-blur hover:bg-white">
+            Anggarin
+          </h1>
+        </Link>
         <div className="pointer-events-auto w-full max-w-md">
           <SearchBar onPick={(r: SearchResult) => selectRegion(r.code)} />
         </div>
