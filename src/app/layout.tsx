@@ -13,13 +13,19 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "APBD Tracker — Jelajahi Anggaran Daerah Indonesia",
+  title: {
+    default: "Anggarin — Jelajahi APBD Indonesia melalui Peta",
+    template: "%s | Anggarin",
+  },
   description:
-    "Jelajahi dan bandingkan data APBD daerah Indonesia melalui peta interaktif berdasarkan data publik DJPK Kementerian Keuangan.",
+    "Jelajahi anggaran daerah Indonesia melalui peta interaktif. Lihat pendapatan, belanja, pembiayaan, anggaran, dan realisasi APBD berdasarkan data publik DJPK.",
+  keywords: [
+    "APBD Indonesia", "APBD daerah", "anggaran daerah", "data APBD", "APBD 2026",
+    "realisasi APBD", "DJPK", "anggaran provinsi", "anggaran kabupaten", "anggaran kota",
+  ],
   openGraph: {
-    title: "APBD Tracker — Jelajahi Anggaran Daerah Indonesia",
-    description:
-      "Jelajahi APBD Indonesia melalui peta interaktif. Lihat anggaran, realisasi, pendapatan, belanja, dan pembiayaan setiap daerah berdasarkan data publik DJPK.",
+    title: "Anggarin — Ke mana anggaran daerah pergi?",
+    description: "Jelajahi APBD Indonesia melalui peta interaktif.",
   },
 };
 
