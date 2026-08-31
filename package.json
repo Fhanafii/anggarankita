@@ -1,0 +1,33 @@
+{
+  "name": "web",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint",
+    "fetch:regions": "node scripts/fetch-djpk-regions.js 2022,2023,2024,2025,2026",
+    "build:geo": "node scripts/build-regions.js",
+    "import:apbd": "node --env-file-if-exists=.env.local --env-file-if-exists=.env scripts/import-djpk-apbd.ts",
+    "import:regions": "node --env-file-if-exists=.env.local --env-file-if-exists=.env scripts/load-regions-supabase.js"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.112.4",
+    "maplibre-gl": "^5.24.0",
+    "next": "16.3.3",
+    "react": "19.2.8",
+    "react-dom": "19.2.8",
+    "tsx": "^4.23.13"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "eslint": "^9",
+    "eslint-config-next": "16.3.3",
+    "tailwindcss": "^4",
+    "typescript": "^5"
+  }
+}
