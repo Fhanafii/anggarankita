@@ -3,6 +3,7 @@ import Link from "next/link";
 import { BarChart3, Map, Search, Wallet } from "lucide-react";
 import Navbar from "@/components/landing/Navbar";
 import MapPreviewLazy from "@/components/landing/MapPreviewLazy";
+import TileShuffle from "@/components/landing/TileShuffle";
 
 export const metadata: Metadata = {
   title: "Anggarin — Jelajahi APBD Indonesia melalui Peta",
@@ -173,13 +174,9 @@ export default function Landing() {
               ))}
             </ul>
           </div>
-          <div className="order-1 rounded-2xl border border-slate-200 bg-gradient-to-br from-sky-50 to-indigo-50 p-8 text-center md:order-2">
+          <div className="order-1 rounded-2xl border border-slate-200 bg-gradient-to-br from-sky-50 to-indigo-50 p-8 text-center shadow-sm transition-all duration-200 hover:-translate-y-1 hover:border-sky-200 hover:shadow-lg motion-reduce:transition-none motion-reduce:hover:translate-y-0 md:order-2">
             <p className="text-xs font-bold uppercase tracking-widest text-slate-400">Indonesia</p>
-            <div className="mx-auto mt-4 grid max-w-xs grid-cols-6 gap-1" aria-hidden>
-              {["#123a6e", "#3d78bd", "#a3c4e8", "#6b9fd6", "#1f5496", "#cfe0f3", "#6b9fd6", "#123a6e", "#3d78bd", "#eef4fb", "#a3c4e8", "#3d78bd", "#1f5496", "#6b9fd6", "#cfe0f3", "#3d78bd", "#a3c4e8", "#123a6e"].map((c, i) => (
-                <span key={i} className="h-6 rounded-sm" style={{ background: c }} />
-              ))}
-            </div>
+            <TileShuffle />
             <p className="mt-5 text-sm text-slate-600">Klik daerah → lihat APBD-nya</p>
           </div>
         </div>
@@ -192,8 +189,8 @@ export default function Landing() {
           </p>
           <div className="mt-10 grid gap-6 text-left md:grid-cols-3">
             {STEPS.map((s) => (
-              <div key={s.n} className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
-                <p className="text-3xl font-extrabold text-sky-200">{s.n}</p>
+              <div key={s.n} className="group rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition-all duration-200 hover:-translate-y-1 hover:border-sky-200 hover:shadow-lg motion-reduce:transition-none motion-reduce:hover:translate-y-0">
+                <p className="text-3xl font-extrabold text-sky-200 transition-colors duration-200 group-hover:text-sky-300 motion-reduce:transition-none">{s.n}</p>
                 <h3 className="mt-2 font-bold">{s.title}</h3>
                 <p className="mt-1 text-sm leading-relaxed text-slate-600">{s.text}</p>
               </div>
@@ -208,8 +205,8 @@ export default function Landing() {
           <h2 className="text-center text-2xl font-bold tracking-tight md:text-3xl">Apa yang bisa kamu jelajahi?</h2>
           <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {FEATURES.map((f) => (
-              <div key={f.title} className="rounded-2xl border border-slate-200 bg-white p-6">
-                <span className="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-sky-50 text-sky-700" aria-hidden>
+              <div key={f.title} className="group rounded-2xl border border-slate-200 bg-white p-6 transition-all duration-200 hover:-translate-y-1 hover:border-sky-200 hover:shadow-lg motion-reduce:transition-none motion-reduce:hover:translate-y-0">
+                <span className="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-sky-50 text-sky-700 transition-colors duration-200 group-hover:bg-sky-100 motion-reduce:transition-none" aria-hidden>
                   <f.icon className="h-5 w-5" strokeWidth={2} />
                 </span>
                 <h3 className="mt-3 font-bold">{f.title}</h3>
