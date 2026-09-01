@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { BarChart3, Map, Search, Wallet } from "lucide-react";
 import Navbar from "@/components/landing/Navbar";
 import MapPreviewLazy from "@/components/landing/MapPreviewLazy";
 
@@ -11,22 +12,22 @@ export const metadata: Metadata = {
 
 const FEATURES = [
   {
-    icon: "🗺️",
+    icon: Map,
     title: "Jelajahi lewat peta",
     text: "Lihat seluruh Indonesia dan pilih provinsi, kabupaten, atau kota langsung dari peta.",
   },
   {
-    icon: "🧾",
+    icon: Wallet,
     title: "Pahami struktur anggaran",
     text: "Lihat bagaimana pendapatan, belanja, dan pembiayaan daerah tersusun.",
   },
   {
-    icon: "📊",
+    icon: BarChart3,
     title: "Lihat anggaran dan realisasi",
     text: "Bandingkan nilai yang dianggarkan dengan realisasi yang tersedia pada data sumber.",
   },
   {
-    icon: "🔍",
+    icon: Search,
     title: "Temukan daerah lebih cepat",
     text: "Cari daerah atau gunakan filter untuk menemukan wilayah berdasarkan metrik anggaran tertentu.",
   },
@@ -208,7 +209,9 @@ export default function Landing() {
           <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {FEATURES.map((f) => (
               <div key={f.title} className="rounded-2xl border border-slate-200 bg-white p-6">
-                <span aria-hidden className="text-2xl">{f.icon}</span>
+                <span className="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-sky-50 text-sky-700" aria-hidden>
+                  <f.icon className="h-5 w-5" strokeWidth={2} />
+                </span>
                 <h3 className="mt-3 font-bold">{f.title}</h3>
                 <p className="mt-1.5 text-sm leading-relaxed text-slate-600">{f.text}</p>
               </div>
