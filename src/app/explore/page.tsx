@@ -29,7 +29,7 @@ export default async function Home({
       </Suspense>
       <footer className="pointer-events-none absolute inset-x-0 bottom-0 z-0 flex justify-center pb-1">
         <p className="rounded-t bg-white/70 px-2 py-0.5 text-[10px] text-slate-500 backdrop-blur">
-          Anggarin adalah proyek visualisasi independen, bukan aplikasi resmi pemerintah. Sumber data: DJPK — Portal Data SIKD, Kemenkeu RI.
+          Anggaran Kita adalah proyek visualisasi independen, bukan aplikasi resmi pemerintah. Sumber data: DJPK — Portal Data SIKD, Kemenkeu RI.
         </p>
       </footer>
     </main>

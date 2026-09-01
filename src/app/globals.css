@@ -1,11 +1,59 @@
 @import "tailwindcss";
 
+/* ============================================================
+   Anggaran Kita — brand theme (requirement/rebranding.md)
+
+   Primary    Deep Blue    #155EEF
+   Secondary  Amber Yellow #F5B700
+   Background Off White    #F8FAFC
+   Surface    White        #FFFFFF
+   Text       Navy         #172033
+   Muted      Slate        #64748B
+   Border     Light Slate  #E2E8F0
+
+   The existing UI uses the `sky-*` (accent) and `slate-*` (neutral)
+   scales; we remap those scales to the brand palette so the whole
+   project adopts the theme consistently.
+   ============================================================ */
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #f8fafc; /* off white */
+  --foreground: #172033; /* navy */
 }
 
 @theme inline {
+  /* named brand tokens for new code */
+  --color-primary: #155eef;
+  --color-secondary: #f5b700;
+  --color-canvas: #f8fafc;
+  --color-surface: #ffffff;
+  --color-ink: #172033;
+  --color-muted: #64748b;
+  --color-line: #e2e8f0;
+
+  /* accent scale (was sky) -> Deep Blue ramp */
+  --color-sky-50: #eff5fe;
+  --color-sky-100: #dce8fd;
+  --color-sky-200: #b9d1fb;
+  --color-sky-300: #7fa8f7;
+  --color-sky-400: #4287f5;
+  --color-sky-500: #155eef;
+  --color-sky-600: #0f4fcc;
+  --color-sky-700: #0c40a3;
+  --color-sky-800: #0a3585;
+
+  /* neutral scale (was slate) -> brand navy/slate/border */
+  --color-slate-50: #f8fafc;
+  --color-slate-100: #f1f5f9;
+  --color-slate-200: #e2e8f0;
+  --color-slate-300: #cbd5e1;
+  --color-slate-400: #94a3b8;
+  --color-slate-500: #64748b;
+  --color-slate-600: #556275;
+  --color-slate-700: #3b465c;
+  --color-slate-800: #26304a;
+  --color-slate-900: #172033;
+
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);

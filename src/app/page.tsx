@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import { BarChart3, Map, Search, Wallet } from "lucide-react";
 import Navbar from "@/components/landing/Navbar";
 import MapPreviewLazy from "@/components/landing/MapPreviewLazy";
@@ -7,7 +8,7 @@ import ProblemCards from "@/components/landing/ProblemCards";
 import TileShuffle from "@/components/landing/TileShuffle";
 
 export const metadata: Metadata = {
-  title: "Anggarin — Jelajahi APBD Indonesia melalui Peta",
+  title: "Anggaran Kita — Jelajahi APBD Indonesia melalui Peta",
   description:
     "Jelajahi anggaran daerah Indonesia melalui peta interaktif. Lihat pendapatan, belanja, pembiayaan, anggaran, dan realisasi APBD berdasarkan data publik DJPK.",
 };
@@ -43,28 +44,28 @@ const STEPS = [
 
 const FAQS = [
   {
-    q: "Apa itu Anggarin?",
-    a: "Anggarin adalah platform independen untuk menjelajahi data APBD Indonesia melalui peta interaktif.",
+    q: "Apa itu Anggaran Kita?",
+    a: "Anggaran Kita adalah platform independen untuk menjelajahi data APBD Indonesia melalui peta interaktif.",
   },
   {
-    q: "Apakah Anggarin adalah website pemerintah?",
-    a: "Bukan. Anggarin merupakan proyek independen yang menggunakan dan memvisualisasikan data publik pemerintah.",
+    q: "Apakah Anggaran Kita adalah website pemerintah?",
+    a: "Bukan. Anggaran Kita merupakan proyek independen yang menggunakan dan memvisualisasikan data publik pemerintah.",
   },
   {
     q: "Dari mana data APBD berasal?",
-    a: "Sumber utama Anggarin adalah Portal Data SIKD dari Direktorat Jenderal Perimbangan Keuangan (DJPK), Kementerian Keuangan Republik Indonesia.",
+    a: "Sumber utama Anggaran Kita adalah Portal Data SIKD dari Direktorat Jenderal Perimbangan Keuangan (DJPK), Kementerian Keuangan Republik Indonesia.",
   },
   {
-    q: "Apakah Anggarin menunjukkan semua proyek pemerintah?",
-    a: "Tidak. Data utama Anggarin berfokus pada struktur APBD, termasuk pendapatan, belanja, pembiayaan, anggaran/pagu, dan realisasi. Detail proyek hanya dapat ditampilkan jika tersedia dari sumber data yang relevan.",
+    q: "Apakah Anggaran Kita menunjukkan semua proyek pemerintah?",
+    a: "Tidak. Data utama Anggaran Kita berfokus pada struktur APBD, termasuk pendapatan, belanja, pembiayaan, anggaran/pagu, dan realisasi. Detail proyek hanya dapat ditampilkan jika tersedia dari sumber data yang relevan.",
   },
   {
-    q: "Apakah data Anggarin real-time?",
-    a: "Tidak selalu. Anggarin mengikuti ketersediaan dan pembaruan data pada sumber yang digunakan.",
+    q: "Apakah data Anggaran Kita real-time?",
+    a: "Tidak selalu. Anggaran Kita mengikuti ketersediaan dan pembaruan data pada sumber yang digunakan.",
   },
   {
     q: "Mengapa ada daerah yang datanya tidak lengkap?",
-    a: "Struktur dan ketersediaan data dapat berbeda berdasarkan tahun dan wilayah. Anggarin tidak mengisi data yang tidak tersedia dengan estimasi.",
+    a: "Struktur dan ketersediaan data dapat berbeda berdasarkan tahun dan wilayah. Anggaran Kita tidak mengisi data yang tidak tersedia dengan estimasi.",
   },
   {
     q: "Apakah saya boleh menggunakan datanya?",
@@ -93,13 +94,13 @@ export default function Landing() {
           Ke mana anggaran daerah pergi?
         </h1>
         <p className="mx-auto mt-5 max-w-2xl text-base leading-relaxed text-slate-600 md:text-lg">
-          Anggarin membantu kamu menjelajahi APBD Indonesia melalui peta interaktif. Pilih daerah, lihat
+          Anggaran Kita membantu kamu menjelajahi APBD Indonesia melalui peta interaktif. Pilih daerah, lihat
           anggarannya, dan pahami bagaimana pendapatan, belanja, serta realisasi APBD berubah dari waktu ke waktu.
         </p>
         <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
           <Link
             href="/explore"
-            className="rounded-full bg-slate-900 px-7 py-3 text-sm font-semibold text-white shadow-lg transition-transform duration-200 hover:-translate-y-0.5 hover:bg-slate-700 motion-reduce:transition-none motion-reduce:hover:translate-y-0 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-600"
+            className="rounded-full bg-sky-500 px-7 py-3 text-sm font-semibold text-white shadow-lg transition-transform duration-200 hover:-translate-y-0.5 hover:bg-sky-600 motion-reduce:transition-none motion-reduce:hover:translate-y-0 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-600"
           >
             Jelajahi APBD
           </Link>
@@ -129,7 +130,7 @@ export default function Landing() {
               portal yang membutuhkan waktu untuk dipahami.
             </p>
             <p className="mt-3 leading-relaxed text-slate-600">
-              Anggarin mencoba membuat data tersebut lebih mudah dijelajahi dengan menggunakan peta sebagai
+              Anggaran Kita mencoba membuat data tersebut lebih mudah dijelajahi dengan menggunakan peta sebagai
               titik awal — data tersedia, dan visualisasi dapat membuatnya lebih mudah dieksplorasi.
             </p>
           </div>
@@ -209,7 +210,7 @@ export default function Landing() {
           <div>
             <h2 className="text-2xl font-bold tracking-tight md:text-3xl">Dari mana datanya berasal?</h2>
             <p className="mt-4 leading-relaxed text-slate-600">
-              Anggarin menggunakan data publik APBD yang tersedia melalui Portal Data SIKD DJPK sebagai
+              Anggaran Kita menggunakan data publik APBD yang tersedia melalui Portal Data SIKD DJPK sebagai
               sumber utama untuk data anggaran daerah.
             </p>
             <div className="mt-6 rounded-2xl border border-slate-200 bg-white p-5">
@@ -234,7 +235,7 @@ export default function Landing() {
               Kami ingin kamu tahu dari mana setiap angka berasal.
             </h2>
             <p className="mt-4 leading-relaxed text-slate-600">
-              Anggarin bukan sumber data resmi pemerintah. Anggarin adalah proyek independen yang
+              Anggaran Kita bukan sumber data resmi pemerintah. Anggaran Kita adalah proyek independen yang
               memvisualisasikan data publik agar lebih mudah dijelajahi. Setiap halaman detail daerah
               menyediakan referensi sumber, tahun, periode data, dan tanggal penerimaan data.
             </p>
@@ -259,11 +260,11 @@ export default function Landing() {
       <section className="border-t border-slate-100 bg-slate-50/60">
         <div className="mx-auto max-w-6xl px-4 py-16">
           <h2 className="text-center text-2xl font-bold tracking-tight md:text-3xl">
-            Apa yang belum bisa ditunjukkan Anggarin?
+            Apa yang belum bisa ditunjukkan Anggaran Kita?
           </h2>
           <p className="mx-auto mt-3 max-w-2xl text-center leading-relaxed text-slate-600">
             Data APBD tidak selalu menyediakan detail sampai ke tingkat proyek individual. Karena itu,
-            Anggarin tidak mengklaim dapat menunjukkan setiap proyek pembangunan atau ke mana setiap rupiah
+            Anggaran Kita tidak mengklaim dapat menunjukkan setiap proyek pembangunan atau ke mana setiap rupiah
             digunakan secara spesifik.
           </p>
           <div className="mx-auto mt-10 grid max-w-3xl gap-6 sm:grid-cols-2">
@@ -286,7 +287,7 @@ export default function Landing() {
           <div className="mx-auto mt-12 max-w-2xl rounded-2xl bg-slate-900 p-8 text-center text-white">
             <h3 className="text-xl font-bold">Tidak mengarang angka.</h3>
             <p className="mt-3 text-sm leading-relaxed text-slate-300">
-              Jika data tidak tersedia, Anggarin tidak akan mengisinya dengan estimasi. Data yang tersedia
+              Jika data tidak tersedia, Anggaran Kita tidak akan mengisinya dengan estimasi. Data yang tersedia
               ditampilkan berdasarkan sumber yang digunakan. Data yang tidak tersedia akan ditandai sebagai
               tidak tersedia.
             </p>
@@ -318,7 +319,7 @@ export default function Landing() {
             Mulai dari satu daerah. Bandingkan dengan daerah lain. Jelajahi APBD Indonesia melalui peta.
           </p>
           <div className="mt-7 flex flex-wrap items-center justify-center gap-3">
-            <Link href="/explore" className="rounded-full bg-slate-900 px-7 py-3 text-sm font-semibold text-white shadow-lg transition-transform duration-200 hover:-translate-y-0.5 hover:bg-slate-700 motion-reduce:transition-none motion-reduce:hover:translate-y-0">
+            <Link href="/explore" className="rounded-full bg-sky-500 px-7 py-3 text-sm font-semibold text-white shadow-lg transition-transform duration-200 hover:-translate-y-0.5 hover:bg-sky-600 motion-reduce:transition-none motion-reduce:hover:translate-y-0">
               Jelajahi APBD
             </Link>
             <a href="#data" className="rounded-full border border-slate-300 bg-white px-7 py-3 text-sm font-semibold text-slate-700 hover:border-slate-400">
@@ -332,7 +333,10 @@ export default function Landing() {
       <footer className="border-t border-slate-200 bg-white">
         <div className="mx-auto grid max-w-6xl gap-8 px-4 py-12 md:grid-cols-3">
           <div>
-            <p className="text-lg font-extrabold tracking-tight">Anggarin</p>
+            <p className="flex items-center gap-2 text-lg font-extrabold tracking-tight">
+              <Image src="/logo/logo-ak.svg" alt="Logo Anggaran Kita" width={30} height={21} />
+              Anggaran Kita
+            </p>
             <p className="mt-2 max-w-xs text-sm leading-relaxed text-slate-500">
               Jelajahi anggaran daerah Indonesia melalui peta interaktif.
             </p>
@@ -359,8 +363,8 @@ export default function Landing() {
         </div>
         <div className="border-t border-slate-100">
           <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-2 px-4 py-5 text-xs text-slate-500 md:flex-row">
-            <p>Anggarin adalah proyek independen. Bukan layanan resmi pemerintah.</p>
-            <p>© {new Date().getFullYear()} Anggarin</p>
+            <p>Anggaran Kita adalah proyek independen. Bukan layanan resmi pemerintah.</p>
+            <p>© {new Date().getFullYear()} Anggaran Kita</p>
           </div>
         </div>
       </footer>

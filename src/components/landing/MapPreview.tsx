@@ -121,7 +121,7 @@ export default function MapPreview() {
       {/* CTA overlay */}
       <a
         href="/explore"
-        className="absolute bottom-3 left-1/2 -translate-x-1/2 rounded-full bg-slate-900/90 px-5 py-2 text-sm font-semibold text-white shadow-lg backdrop-blur transition-colors hover:bg-slate-700"
+        className="absolute bottom-3 left-1/2 -translate-x-1/2 rounded-full bg-sky-500/90 px-5 py-2 text-sm font-semibold text-white shadow-lg backdrop-blur transition-colors hover:bg-sky-600"
       >
         Buka peta penuh →
       </a>

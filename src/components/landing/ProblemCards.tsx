@@ -1,5 +1,5 @@
 "use client";
-// Problem-section comparison cards (§10): default state highlights "Anggarin".
+// Problem-section comparison cards (§10): default state highlights "Anggaran Kita".
 // Hovering either card swaps the highlight to the hovered one — a playful way
 // to invite comparing both flows. Reduced-motion friendly (color transitions
 // only, 200ms).
@@ -7,7 +7,7 @@
 import { useState } from "react";
 
 const TRADITIONAL = ["Buka portal", "Cari daerah", "Cari kategori", "Bandingkan angka", "Interpretasi sendiri"];
-const ANGGARIN = ["Peta Indonesia", "Pilih daerah", "Lihat APBD", "Bandingkan"];
+const KITA_STEPS = ["Peta Indonesia", "Pilih daerah", "Lihat APBD", "Bandingkan"];
 
 interface CardProps {
   label: string;
@@ -41,13 +41,13 @@ function CompareCard({ label, steps, highlighted, onEnter }: CardProps) {
 }
 
 export default function ProblemCards() {
-  // "anggarin" (default) or "traditional" — which card currently holds the highlight
-  const [active, setActive] = useState<"anggarin" | "traditional">("anggarin");
+  // "kita" (default) or "traditional" — which card currently holds the highlight
+  const [active, setActive] = useState<"kita" | "traditional">("kita");
 
   return (
     <div
       className="grid gap-4 sm:grid-cols-2"
-      onMouseLeave={() => setActive("anggarin")} // back to default when pointer leaves
+      onMouseLeave={() => setActive("kita")} // back to default when pointer leaves
     >
       <CompareCard
         label="Podium tabel"
@@ -56,10 +56,10 @@ export default function ProblemCards() {
         onEnter={() => setActive("traditional")}
       />
       <CompareCard
-        label="Anggarin"
-        steps={ANGGARIN}
-        highlighted={active === "anggarin"}
-        onEnter={() => setActive("anggarin")}
+        label="Anggaran Kita"
+        steps={KITA_STEPS}
+        highlighted={active === "kita"}
+        onEnter={() => setActive("kita")}
       />
     </div>
   );

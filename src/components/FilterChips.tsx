@@ -13,7 +13,7 @@ export default function FilterChips({ active, onPick }: { active: string; onPick
           aria-pressed={active === f.id}
           className={`shrink-0 rounded-full border px-3 py-1.5 text-xs font-medium transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-sky-500 ${
             active === f.id
-              ? "border-slate-900 bg-slate-900 text-white"
+              ? "border-sky-500 bg-sky-500 text-white"
               : "border-slate-200 bg-white/90 text-slate-700 backdrop-blur hover:border-slate-300"
           }`}
         >

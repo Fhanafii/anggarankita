@@ -37,15 +37,15 @@ export function appLayers(): LayerSpecification[] {
     {
       id: "provinces-label", type: "symbol", source: SOURCES.provinceLabels, minzoom: 4,
       layout: { "text-field": ["get", "text"], "text-size": 11, "text-font": LABEL_FONT, "text-allow-overlap": false },
-      paint: { "text-color": "#1e293b", "text-halo-color": "#ffffff", "text-halo-width": 1.5 },
+      paint: { "text-color": "#172033", "text-halo-color": "#ffffff", "text-halo-width": 1.5 },
     },
     {
       id: "districts-label", type: "symbol", source: SOURCES.districtLabels, minzoom: 6.5,
       layout: { "text-field": ["get", "text"], "text-size": 10, "text-font": LABEL_FONT, "text-allow-overlap": false },
-      paint: { "text-color": "#334155", "text-halo-color": "#ffffff", "text-halo-width": 1.2 },
+      paint: { "text-color": "#3b465c", "text-halo-color": "#ffffff", "text-halo-width": 1.2 },
     },
-    { id: "highlight", type: "line", source: SOURCES.provinces, paint: { "line-color": "#0f172a", "line-width": 2.5 }, filter: ["==", ["get", "code"], ""] },
-    { id: "highlight-d", type: "line", source: SOURCES.districts, minzoom: 5.5, paint: { "line-color": "#0f172a", "line-width": 2.5 }, filter: ["==", ["get", "code"], ""] },
+    { id: "highlight", type: "line", source: SOURCES.provinces, paint: { "line-color": "#172033", "line-width": 2.5 }, filter: ["==", ["get", "code"], ""] },
+    { id: "highlight-d", type: "line", source: SOURCES.districts, minzoom: 5.5, paint: { "line-color": "#172033", "line-width": 2.5 }, filter: ["==", ["get", "code"], ""] },
   ];
 }
 

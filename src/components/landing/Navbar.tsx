@@ -3,6 +3,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 
 const LINKS = [
   { href: "/#tentang", label: "Tentang" },
@@ -15,8 +16,9 @@ export default function Navbar() {
   return (
     <header className="sticky top-0 z-40 border-b border-slate-100 bg-white/85 backdrop-blur">
       <nav className="mx-auto flex h-14 max-w-6xl items-center justify-between px-4" aria-label="Navigasi utama">
-        <Link href="/" className="text-lg font-extrabold tracking-tight text-slate-900">
-          Anggarin
+        <Link href="/" className="flex items-center gap-2 text-lg font-extrabold tracking-tight text-slate-900">
+          <Image src="/logo/logo-ak.svg" alt="Logo Anggaran Kita" width={34} height={24} priority />
+          Anggaran Kita
         </Link>
         <div className="hidden items-center gap-6 md:flex">
           <Link href="/explore" className="text-sm font-medium text-slate-600 hover:text-slate-900">
@@ -29,7 +31,7 @@ export default function Navbar() {
           ))}
           <Link
             href="/explore"
-            className="rounded-full bg-slate-900 px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-slate-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-600"
+            className="rounded-full bg-sky-500 px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-sky-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-600"
           >
             Mulai Jelajah
           </Link>
@@ -54,7 +56,7 @@ export default function Navbar() {
                 {l.label}
               </a>
             ))}
-            <Link href="/explore" onClick={() => setOpen(false)} className="mt-2 rounded-full bg-slate-900 px-4 py-2 text-center text-sm font-semibold text-white">
+            <Link href="/explore" onClick={() => setOpen(false)} className="mt-2 rounded-full bg-sky-500 px-4 py-2 text-center text-sm font-semibold text-white">
               Mulai Jelajah
             </Link>
           </div>

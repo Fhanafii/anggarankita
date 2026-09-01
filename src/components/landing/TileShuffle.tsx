@@ -6,7 +6,7 @@
 import { useCallback, useState } from "react";
 
 const PALETTE = [
-  "#eef4fb", "#cfe0f3", "#a3c4e8", "#6b9fd6", "#3d78bd", "#1f5496", "#123a6e",
+  "#eff5fe", "#dce8fd", "#b9d1fb", "#7fa8f7", "#4287f5", "#155eef", "#0c40a3",
 ];
 
 function shuffled(): string[] {

@@ -1,7 +1,7 @@
 // Choropleth color scales (§21, §46): one scale per metric unit, never reused
 // across unrelated metrics.
 
-export const CHOROPLETH_COLORS = ["#eef4fb", "#cfe0f3", "#a3c4e8", "#6b9fd6", "#3d78bd", "#1f5496", "#123a6e"];
+export const CHOROPLETH_COLORS = ["#eff5fe", "#dce8fd", "#b9d1fb", "#7fa8f7", "#4287f5", "#155eef", "#0c40a3"];
 export const NO_DATA_COLOR = "#e5e7eb";
 
 export type MetricUnit = "rupiah" | "percent";

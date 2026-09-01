@@ -14,8 +14,8 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: {
-    default: "Anggarin — Jelajahi APBD Indonesia melalui Peta",
-    template: "%s | Anggarin",
+    default: "Anggaran Kita — Jelajahi APBD Indonesia melalui Peta",
+    template: "%s | Anggaran Kita",
   },
   description:
     "Jelajahi anggaran daerah Indonesia melalui peta interaktif. Lihat pendapatan, belanja, pembiayaan, anggaran, dan realisasi APBD berdasarkan data publik DJPK.",
@@ -24,9 +24,10 @@ export const metadata: Metadata = {
     "realisasi APBD", "DJPK", "anggaran provinsi", "anggaran kabupaten", "anggaran kota",
   ],
   openGraph: {
-    title: "Anggarin — Ke mana anggaran daerah pergi?",
+    title: "Anggaran Kita — Ke mana anggaran daerah pergi?",
     description: "Jelajahi APBD Indonesia melalui peta interaktif.",
   },
+  icons: { icon: "/logo/logo-ak.svg" },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
