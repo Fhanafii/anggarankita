@@ -3,6 +3,7 @@ import Link from "next/link";
 import { BarChart3, Map, Search, Wallet } from "lucide-react";
 import Navbar from "@/components/landing/Navbar";
 import MapPreviewLazy from "@/components/landing/MapPreviewLazy";
+import ProblemCards from "@/components/landing/ProblemCards";
 import TileShuffle from "@/components/landing/TileShuffle";
 
 export const metadata: Metadata = {
@@ -132,27 +133,7 @@ export default function Landing() {
               titik awal — data tersedia, dan visualisasi dapat membuatnya lebih mudah dieksplorasi.
             </p>
           </div>
-          <div className="grid gap-4 sm:grid-cols-2">
-            <div className="rounded-2xl border border-slate-200 bg-white p-5">
-              <p className="text-xs font-bold uppercase tracking-wider text-slate-400">Podium tabel</p>
-              <ol className="mt-3 space-y-2 text-sm text-slate-600">
-                <li>1. Buka portal</li>
-                <li>2. Cari daerah</li>
-                <li>3. Cari kategori</li>
-                <li>4. Bandingkan angka</li>
-                <li>5. Interpretasi sendiri</li>
-              </ol>
-            </div>
-            <div className="rounded-2xl border border-sky-200 bg-sky-50/50 p-5">
-              <p className="text-xs font-bold uppercase tracking-wider text-sky-700">Anggarin</p>
-              <ol className="mt-3 space-y-2 text-sm text-slate-700">
-                <li>1. Peta Indonesia</li>
-                <li>2. Pilih daerah</li>
-                <li>3. Lihat APBD</li>
-                <li>4. Bandingkan</li>
-              </ol>
-            </div>
-          </div>
+          <ProblemCards />
         </div>
       </section>
 
