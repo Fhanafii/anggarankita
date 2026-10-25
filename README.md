@@ -1,6 +1,16 @@
-# Anggaran Kita (APBD Tracker)
-
-**Jelajahi Anggaran Pendapatan dan Belanja Daerah (APBD) Indonesia melalui peta interaktif.**
+<div align="center">
+  <img src="public/logo/logo-ak.png" alt="Logo Anggaran Kita" width="112" />
+  <h1>Anggaran Kita — APBD Tracker</h1>
+  <p><strong>Jelajahi APBD Indonesia melalui peta interaktif.</strong></p>
+  <p>
+    <a href="https://nextjs.org/"><img alt="Next.js 16" src="https://img.shields.io/badge/Next.js-16-000000?logo=nextdotjs&logoColor=white"></a>
+    <a href="https://react.dev/"><img alt="React 19" src="https://img.shields.io/badge/React-19-149ECA?logo=react&logoColor=white"></a>
+    <a href="https://www.typescriptlang.org/"><img alt="TypeScript 5" src="https://img.shields.io/badge/TypeScript-5-3178C6?logo=typescript&logoColor=white"></a>
+    <a href="https://tailwindcss.com/"><img alt="Tailwind CSS 4" src="https://img.shields.io/badge/Tailwind_CSS-4-06B6D4?logo=tailwindcss&logoColor=white"></a>
+    <a href="https://maplibre.org/maplibre-gl-js/docs/"><img alt="MapLibre GL JS 5" src="https://img.shields.io/badge/MapLibre_GL_JS-5-396CB2?logo=maplibre&logoColor=white"></a>
+    <a href="https://supabase.com/"><img alt="Supabase" src="https://img.shields.io/badge/Supabase-PostgreSQL-3FCF8E?logo=supabase&logoColor=white"></a>
+  </p>
+</div>
 
 Lihat anggaran, realisasi, pendapatan, belanja, dan pembiayaan setiap provinsi,
 kabupaten, dan kota — berdasarkan data publik **DJPK — Portal Data SIKD,
@@ -9,7 +19,9 @@ Kementerian Keuangan RI** ([djpk.kemenkeu.go.id/portal/data/apbd](https://djpk.k
 > **Disclaimer:** APBD Tracker adalah proyek visualisasi independen dan bukan
 > aplikasi resmi pemerintah.
 
----
+<p align="center">
+  <img src="public/projectoverview.png" alt="Visualisasi aplikasi Anggaran Kita APBD Tracker" width="100%" />
+</p>
 
 ## Daftar isi
 
@@ -189,36 +201,43 @@ npm run import:regions               # hanya jika regions berubah
 
 ## Arsitektur
 
-```
-                    DJPK SIKD (sumber kebenaran)
-                          │
-                 scripts/ (ingestion, offline)
-                          │
-              ┌───────────┴───────────┐
-              │ Supabase / PostgreSQL │  ← produksi (opsional)
-              │  + PostGIS, RLS       │
-              └───────────┬───────────┘
-                          │  anon key (read-only)
-              src/lib/data.ts  ← fallback: snapshot data/*.json
-                          │
-              Route Handlers (server-side querying)
-                /api/map  /api/apbd/[code]  /api/search
-                          │
-                    React client (Explorer)
-                          │
-                   MapLibre GL (choropleth)
+```mermaid
+flowchart LR
+    DJPK["DJPK SIKD<br/>Sumber data APBD"]
+    BIG["BIG<br/>Batas administratif"]
+    Fetch[fetch-djpk-regions.js]
+    Import["import-djpk-apbd.ts<br/>Parse dan normalisasi"]
+    Geo["build-regions.js<br/>Pencocokan dan simplifikasi"]
+    LoadRegions[load-regions-supabase.js]
+    Snapshots[("Snapshot JSON<br/>data/")]
+    GeoJSON[("GeoJSON<br/>public/geo/")]
+    DB[("Supabase<br/>PostgreSQL + PostGIS")]
+    Export["export_supabase_dataset.py<br/>Ekspor CSV read-only"]
+    Dataset[("Dataset publik<br/>CSV + dokumentasi")]
+    App["Next.js<br/>Route Handlers + data layer"]
+    UI[React Explorer]
+    Map["MapLibre GL JS<br/>Peta choropleth"]
+
+    DJPK --> Fetch
+    DJPK --> Import
+    BIG --> Geo
+    Fetch --> Geo
+    Import --> Snapshots
+    Import --> DB
+    Geo --> GeoJSON
+    Geo --> Snapshots
+    Snapshots --> App
+    GeoJSON --> UI
+    DB -->|opsional, query read-only| App
+    DB --> Export
+    Export --> Dataset
+    App --> UI
+    UI --> Map
 ```
 
-Prinsip:
-
-- **Browser tidak pernah menyentuh DJPK.** Semua parsing/normalisasi terjadi
-  di skrip offline; app hanya membaca hasil yang sudah bersih.
-- **Query minimal ke klien** (§47): peta awal hanya meminta
-  `region + metric + value` per tahun (`/api/map`); akun detail di-fetch saat
-  satu daerah dipilih (`/api/apbd/[code]`).
-- **Pemisahan UI vs logika peta**: `src/lib/map/*` adalah modul murni
-  (skala warna, helper geo, definisi style, controller imperatif);
-  `ApbdMap.tsx` hanya wrapper React.
+Alur ingest dan ekspor dijalankan terpisah dari aplikasi web. Saat Supabase
+tidak dikonfigurasi, aplikasi membaca snapshot lokal; bila Supabase tersedia,
+data dibaca melalui query read-only.
 
 ---
 
