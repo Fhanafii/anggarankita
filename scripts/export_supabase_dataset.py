@@ -60,6 +60,7 @@ def fetch_table(base_url: str, api_key: str, table: str, columns: list[str], pag
     rows: list[dict[str, Any]] = []
     offset = 0
     select = ",".join(columns)
+    print(f"INFO: Mulai membaca tabel {table} (batch {page_size} baris).", flush=True)
     while True:
         # Stable pagination uses the table's unique key.
         query = f"select={urllib.parse.quote(select, safe=',')}"
@@ -94,9 +95,11 @@ def fetch_table(base_url: str, api_key: str, table: str, columns: list[str], pag
         if not isinstance(page, list):
             raise ExportError(f"Respons tabel {table} bukan daftar JSON yang valid.")
         rows.extend(page)
+        print(f"INFO: {table}: {len(rows)} baris sudah dibaca.", flush=True)
         if len(page) < page_size:
             break
         offset += len(page)
+    print(f"INFO: Selesai membaca {table}: total {len(rows)} baris.", flush=True)
     return rows
 
 
@@ -194,6 +197,7 @@ def main() -> int:
         parser.error("--page-size harus antara 1 dan 1000.")
 
     load_local_env()
+    print("INFO: Memuat konfigurasi ekspor.", flush=True)
     base_url = os.getenv("SUPABASE_URL") or os.getenv("NEXT_PUBLIC_SUPABASE_URL")
     api_key = os.getenv("SUPABASE_SERVICE_ROLE_KEY")
     if not base_url or not api_key:
@@ -201,12 +205,15 @@ def main() -> int:
         return 2
 
     try:
+        print("INFO: Mengambil data APBD dari Supabase (read-only).", flush=True)
         apbd_all = fetch_table(base_url, api_key, "apbd_records", ["id", "region_id", "year", "account_code", "account_name", "account_group", "parent_account_code", "level", "budget", "realization", "realization_percentage", "source_url", "source_name", "source_updated_at", "source_note"], args.page_size)
+        print("INFO: Mengambil metadata wilayah dari Supabase (read-only).", flush=True)
         regions_all = fetch_table(base_url, api_key, "regions", ["code", "name", "type", "parent_code", "province_code", "centroid_lat", "centroid_lng"], args.page_size)
     except ExportError as exc:
         print(f"ERROR: {exc}", file=sys.stderr)
         return 2
 
+    print("INFO: Menentukan tahun dan memvalidasi data.", flush=True)
     available = sorted({int(row["year"]) for row in apbd_all if row.get("year") is not None})
     if args.years:
         unavailable = sorted(set(args.years) - set(available))
@@ -262,17 +269,22 @@ def main() -> int:
     if not output_dir.is_absolute():
         output_dir = ROOT / output_dir
     try:
+        print(f"INFO: Menulis dataset ke {output_dir}.", flush=True)
         output_dir.mkdir(parents=True, exist_ok=True)
         file_counts: dict[str, int] = {}
         for year in years:
             filename = f"apbd_{year}.csv"
+            print(f"INFO: Menulis {filename} ({len(grouped.get(year, []))} baris).", flush=True)
             write_csv(output_dir / filename, APBD_COLUMNS, grouped.get(year, []))
             file_counts[filename] = len(grouped.get(year, []))
+        print(f"INFO: Menulis regions.csv ({len(regions)} baris).", flush=True)
         write_csv(output_dir / "regions.csv", REGION_COLUMNS, regions)
         file_counts["regions.csv"] = len(regions)
+        print(f"INFO: Menulis account_hierarchy.csv ({len(hierarchy)} baris).", flush=True)
         write_csv(output_dir / "account_hierarchy.csv", HIERARCHY_COLUMNS, hierarchy)
         file_counts["account_hierarchy.csv"] = len(hierarchy)
         dictionary = make_dictionary()
+        print(f"INFO: Menulis data_dictionary.csv ({len(dictionary)} baris).", flush=True)
         write_csv(output_dir / "data_dictionary.csv", ["file_name", "column_name", "data_type", "description", "unit", "nullable", "notes"], dictionary)
         file_counts["data_dictionary.csv"] = len(dictionary)
         report = errors + warnings
@@ -284,6 +296,7 @@ def main() -> int:
         }
         (output_dir / "export_manifest.json").write_text(json.dumps(manifest, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
         file_counts["export_manifest.json"] = 1
+        print("INFO: Menulis README.md dan export_manifest.json.", flush=True)
         source_urls = sorted({str(row["source_url"]) for row in apbd if row.get("source_url")})
         readme = ["# Dataset APBD AnggaranKita", "", "Dataset ini menata hasil ekstraksi data APBD yang tersimpan pada AnggaranKita untuk pemeriksaan dan analisis. Sumber record tercatat sebagai DJPK SIKD.", "",
                   f"- Tanggal ekspor: {now}", f"- Tahun: {', '.join(map(str, years)) if years else 'tidak ada data'}", f"- Wilayah unik pada record: {len(region_codes_selected)}", f"- Wilayah dengan metadata tersedia: {len(regions)}",
@@ -303,6 +316,7 @@ def main() -> int:
         print(f"ERROR: Gagal menulis output di {output_dir}: {exc}", file=sys.stderr)
         return 2
     print(f"INFO: Output tersimpan di {output_dir}.")
+    print(f"INFO: Proses ekspor selesai dengan status {'gagal validasi' if errors else ('perlu ditinjau' if warnings else 'lulus validasi')}.", flush=True)
     return 1 if errors else 0
 
 
